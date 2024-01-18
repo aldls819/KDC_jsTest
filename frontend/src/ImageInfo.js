@@ -18,9 +18,31 @@ class ImageInfo {
     this.render();
   }
 
+  //모달에서 상세 정보 보여주기
+  //async - await 적용 가능
+  showDetail(data) {
+    // 상세 정보 요청
+    api.fetchCatDetail(data.cat.id).then(({ data }) => {
+      // 정보 업데이트
+      this.setState({
+        visible: true,
+        cat: data,
+      });
+    });
+  }
+
+  // 모달 닫기
+  closeImageInfo() {
+    console.log("닫기");
+    this.setState({
+      visible: false,
+      cat: undefined,
+    });
+  }
+
   render() {
     if (this.data.visible) {
-      const { name, url, temperament, origin } = this.data.image;
+      const { name, url, temperament, origin } = this.data.cat;
 
       this.$imageInfo.innerHTML = `
         <div class="content-wrapper">
@@ -35,6 +57,27 @@ class ImageInfo {
           </div>
         </div>`;
       this.$imageInfo.style.display = "block";
+
+      //x 표시 눌러서 닫기
+      // this.$imageInfo.querySelector(".close").addEventListener("click", (e) => {
+      //   this.closeImageInfo();
+      // });
+
+      // esc 눌러서 닫기
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          this.closeImageInfo();
+        }
+      });
+      this.$imageInfo.addEventListener("click", (e) => {
+        console.log(e.target.className);
+        if (
+          e.target.className === "ImageInfo" ||
+          e.target.className === "close"
+        ) {
+          this.closeImageInfo();
+        }
+      });
     } else {
       this.$imageInfo.style.display = "none";
     }

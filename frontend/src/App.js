@@ -22,7 +22,6 @@ class App {
         });
       },
       onRandomSearch: () => {
-        console.log("랜덤?");
         api.fetchRandomCats().then(({ data }) => {
           this.setState(data);
           this.Loading.hide();
@@ -40,10 +39,10 @@ class App {
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
-      onClick: (image) => {
-        this.imageInfo.setState({
+      onClick: (cat) => {
+        this.imageInfo.showDetail({
           visible: true,
-          image,
+          cat,
         });
       },
     });

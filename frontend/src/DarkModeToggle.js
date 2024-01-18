@@ -3,12 +3,14 @@ class DarkModeToggle {
   isDarkMode = null;
 
   constructor({ $target, onSearch }) {
+    const $wrapper = document.createElement("section");
     const $DarkModeToggle = document.createElement("input");
     this.$DarkModeToggle = $DarkModeToggle;
     this.$DarkModeToggle.type = "checkbox";
 
     $DarkModeToggle.className = "DarkModeToggle";
-    $target.appendChild($DarkModeToggle);
+    $wrapper.appendChild($DarkModeToggle);
+    $target.appendChild($wrapper);
 
     $DarkModeToggle.addEventListener("change", (e) => {
       this.setColorMode(e.target.checked);

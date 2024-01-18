@@ -15,6 +15,13 @@ class App {
       },
     });
 
+    this.DarkModeToggle = new DarkModeToggle({
+      $target,
+      // onSearch: (keyword) => {
+      //   api.fetchCats(keyword).then(({ data }) => this.setState(data));
+      // },
+    });
+
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,

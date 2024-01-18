@@ -5,6 +5,18 @@
   font-style: normal;
 }
 
+/* 다크모드 토글 CSS */
+:root[color-mode="dark"] {
+  --background: #000;
+  --textColor: white;
+}
+
+/* 적용 */
+body {
+  background-color: var(--background);
+  color: var(--textColor);
+}
+
 html {
   box-sizing: border-box;
 }

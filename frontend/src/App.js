@@ -18,7 +18,8 @@ class App {
       onSearch: (keyword) => {
         this.Loading.show();
         api.fetchCats(keyword).then(({ data }) => {
-          this.setState(data);
+          //데이터 없으면 빈 배열로 처리
+          this.setState(data ? data : []);
           this.Loading.hide();
           // 로컬에 저장
           this.saveResult(data);
@@ -100,6 +101,6 @@ class App {
       localStorage.getItem("lastResult") === null
         ? []
         : JSON.parse(localStorage.getItem("lastResult"));
-    this.setState(lastResult);
+    this.setState("lastResult");
   }
 }

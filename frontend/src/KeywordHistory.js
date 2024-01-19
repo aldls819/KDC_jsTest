@@ -1,3 +1,5 @@
+import uniqueArray from "./utils/uniqueArray.js";
+
 class KeywordHistory {
   $keywordHistory = null;
   data = null;
@@ -29,6 +31,9 @@ class KeywordHistory {
     //null 일 때의 예외처리
     let keywordHistory = this.getHistory();
     keywordHistory.unshift(keyword);
+    //중복제거
+    keywordHistory = uniqueArray(keywordHistory);
+
     //최근 검색어 5개 제한
     keywordHistory = keywordHistory.slice(0, 5);
     //join 사용해서 string 으로
@@ -67,3 +72,5 @@ class KeywordHistory {
       });
   }
 }
+
+export default KeywordHistory;

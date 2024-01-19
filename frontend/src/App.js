@@ -19,6 +19,8 @@ class App {
         api.fetchCats(keyword).then(({ data }) => {
           this.setState(data);
           this.Loading.hide();
+          // 로컬에 저장
+          this.saveResult(data);
         });
       },
       onRandomSearch: () => {
@@ -54,11 +56,29 @@ class App {
         image: null,
       },
     });
+
+    this.init();
   }
 
   setState(nextData) {
     console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
+  }
+
+  //받은 검색결과 값을 localStorage에 저장하는 메소드
+  saveResult(result) {
+    console.log(result);
+    //JSON.stringify 메소드 사용해서 string으로 저장
+    localStorage.setItem("lastResult", JSON.stringify(result));
+  }
+
+  //init 메소드
+  init() {
+    const result =
+      localStorage.getItem("lastResult") === null
+        ? []
+        : JSON.parse(localStorage.getItem("lastResult"));
+    this.setState(lastResult);
   }
 }

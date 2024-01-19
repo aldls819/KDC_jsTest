@@ -3,6 +3,7 @@ console.log("app is running!");
 class App {
   $target = null;
   data = [];
+  page = 1;
 
   //클래스 실행 시 초기화 -> constructor
   constructor($target) {
@@ -45,6 +46,26 @@ class App {
         this.imageInfo.showDetail({
           visible: true,
           cat,
+        });
+      },
+      //이 부분 다시 보기
+      // 배열 합칠 때는 concat, 요소 합칠 때는 push
+      onNextPage: () => {
+        console.log("다음 페이지 로딩");
+        this.Loading.show();
+        const keywordHistory =
+          localStorage.getItem("keywordHistory") === null
+            ? []
+            : localStorage.getItem("keywordHistory").split(",");
+        const lastKeyword = keywordHistory[0];
+        const page = this.page + 1;
+        //새로운 api에 의해서 새로운 데이터를 기존 데이터에 추가한다
+        api.fetchCats("cat", page).then(({ data }) => {
+          let newData = this.data.concat(data);
+          this.setState(newData);
+          this.page = page;
+
+          this.Loading.hide();
         });
       },
     });

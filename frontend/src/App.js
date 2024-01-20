@@ -30,7 +30,7 @@ class App {
         api.fetchCats(keyword).then(({ data }) => {
           //데이터 없으면 빈 배열로 처리
           this.setState({
-            items: data ? data : [],
+            items: data,
             page: this.DEFAULT_PAGE,
           });
           this.Loading.hide();
@@ -41,7 +41,7 @@ class App {
       onRandomSearch: () => {
         api.fetchRandomCats().then(({ data }) => {
           this.setState({
-            items: data ? data : [],
+            items: data,
             page: this.DEFAULT_PAGE,
           });
           this.Loading.hide();

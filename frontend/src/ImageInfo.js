@@ -18,6 +18,15 @@ class ImageInfo {
   setState(nextData) {
     this.data = nextData;
     this.render();
+    this.setFade(nextData.visible);
+  }
+
+  setFade(visible) {
+    if (visible) {
+      this.$imageInfo.classList.add("show");
+    } else {
+      this.$imageInfo.classList.remove("show");
+    }
   }
 
   //모달에서 상세 정보 보여주기
@@ -57,7 +66,7 @@ class ImageInfo {
             <div>태생: ${origin}</div>
           </div>
         </div>`;
-      this.$imageInfo.style.display = "block";
+      // this.$imageInfo.style.display = "block";
 
       //x 표시 눌러서 닫기
       // this.$imageInfo.querySelector(".close").addEventListener("click", (e) => {
@@ -80,7 +89,7 @@ class ImageInfo {
         }
       });
     } else {
-      this.$imageInfo.style.display = "none";
+      // this.$imageInfo.style.display = "none";
     }
   }
 }

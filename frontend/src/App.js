@@ -6,6 +6,7 @@ import DarkModeToggle from "./DarkModeToggle.js";
 import SearchResult from "./SearchResult.js";
 import ImageInfo from "./ImageInfo.js";
 import api from "./api.js";
+import Banner from "./Banner.js";
 
 class App {
   $target = null;
@@ -54,6 +55,10 @@ class App {
       // onSearch: (keyword) => {
       //   api.fetchCats(keyword).then(({ data }) => this.setState(data));
       // },
+    });
+
+    this.banner = new Banner({
+      $target,
     });
 
     this.searchResult = new SearchResult({

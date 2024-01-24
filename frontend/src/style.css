@@ -64,6 +64,25 @@ body * {
   padding: 10px 15px;
 }
 
+.SearchInputSection {
+  position: relative;
+}
+
+.KeywordHistory {
+  display: none;
+  position: absolute;
+  top: 75px;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  margin: 0;
+  padding: 20px;
+}
+
+.SearchInputSection:hover .KeywordHistory {
+  display: block;
+}
+
 .RandomButton {
   width: 18%;
   font-size: 40px;
@@ -77,6 +96,14 @@ body * {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 1s ease;
+}
+
+.ImageInfo.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .ImageInfo .title {

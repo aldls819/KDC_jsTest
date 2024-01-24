@@ -25,9 +25,9 @@ class App {
 
     this.searchInput = new SearchInput({
       $target,
-      onSearch: (keyword) => {
+      onSearch: (keyword, limit) => {
         this.Loading.show();
-        api.fetchCats(keyword).then(({ data }) => {
+        api.fetchCats(keyword, limit).then(({ data }) => {
           //데이터 없으면 빈 배열로 처리
           this.setState({
             items: data,
